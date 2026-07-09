@@ -1,0 +1,179 @@
+{
+  "entities": {
+    "Siswa": {
+      "title": "Siswa",
+      "description": "Schema representing active, mutated, or graduated student data.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "foto": { "type": "string" },
+        "nis": { "type": "string" },
+        "nisn": { "type": "string" },
+        "nama": { "type": "string" },
+        "jk": { "type": "string", "enum": ["L", "P"] },
+        "tempatLahir": { "type": "string" },
+        "tanggalLahir": { "type": "string", "format": "date" },
+        "agama": { "type": "string" },
+        "alamat": { "type": "string" },
+        "rtRw": { "type": "string" },
+        "desa": { "type": "string" },
+        "kecamatan": { "type": "string" },
+        "kabupaten": { "type": "string" },
+        "provinsi": { "type": "string" },
+        "namaAyah": { "type": "string" },
+        "namaIbu": { "type": "string" },
+        "namaWali": { "type": "string" },
+        "pekerjaanOrtu": { "type": "string" },
+        "noHp": { "type": "string" },
+        "kip": { "type": "string" },
+        "pkh": { "type": "string" },
+        "noKk": { "type": "string" },
+        "noAkta": { "type": "string" },
+        "statusAktif": { "type": "string", "enum": ["Aktif", "Mutasi Keluar", "Lulus", "Tidak Aktif"] },
+        "kelas": { "type": "string", "enum": ["VII", "VIII", "IX"] },
+        "tahunMasuk": { "type": "string" },
+        "alumniTahun": { "type": "string" },
+        "statusKelulusan": { "type": "string", "enum": ["Lulus", "Tidak Lulus", "Belum Ditentukan"] }
+      },
+      "required": ["id", "nis", "nisn", "nama", "jk", "statusAktif", "kelas"]
+    },
+    "SiswaNilai": {
+      "title": "SiswaNilai",
+      "description": "Grades for academic semesters 1-6 and School Exam grades.",
+      "type": "object",
+      "properties": {
+        "siswaId": { "type": "string" },
+        "s1": { "type": "object" },
+        "s2": { "type": "object" },
+        "s3": { "type": "object" },
+        "s4": { "type": "object" },
+        "s5": { "type": "object" },
+        "s6": { "type": "object" },
+        "ujianSekolah": { "type": "object" }
+      },
+      "required": ["siswaId", "s1", "s2", "s3", "s4", "s5", "s6", "ujianSekolah"]
+    },
+    "Mutasi": {
+      "title": "Mutasi",
+      "description": "Mutations (incoming or outgoing) of school students.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "siswaId": { "type": "string" },
+        "siswaNama": { "type": "string" },
+        "nis": { "type": "string" },
+        "nisn": { "type": "string" },
+        "jenis": { "type": "string", "enum": ["Masuk", "Keluar"] },
+        "tanggal": { "type": "string", "format": "date" },
+        "noSurat": { "type": "string" },
+        "sekolahAsalTujuan": { "type": "string" },
+        "alasan": { "type": "string" },
+        "kelasSaatMutasi": { "type": "string", "enum": ["VII", "VIII", "IX"] }
+      },
+      "required": ["id", "siswaId", "siswaNama", "jenis", "tanggal", "noSurat"]
+    },
+    "BukuIndukRecord": {
+      "title": "BukuIndukRecord",
+      "description": "Buku Induk detailed sub-records for a single student including awards, violations, etc.",
+      "type": "object",
+      "properties": {
+        "siswaId": { "type": "string" },
+        "riwayatKelas": { "type": "array" },
+        "prestasi": { "type": "array" },
+        "pelanggaran": { "type": "array" },
+        "ekstrakurikuler": { "type": "array" },
+        "kehadiran": { "type": "object" }
+      },
+      "required": ["siswaId"]
+    },
+    "SPMBRecord": {
+      "title": "SPMBRecord",
+      "description": "Registration details for prospective new student admissions.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nama": { "type": "string" },
+        "jk": { "type": "string", "enum": ["L", "P"] },
+        "nisn": { "type": "string" },
+        "tempatLahir": { "type": "string" },
+        "tanggalLahir": { "type": "string", "format": "date" },
+        "agama": { "type": "string" },
+        "alamat": { "type": "string" },
+        "namaAyah": { "type": "string" },
+        "namaIbu": { "type": "string" },
+        "asalSd": { "type": "string" },
+        "noHp": { "type": "string" },
+        "tanggalDaftar": { "type": "string", "format": "date" },
+        "status": { "type": "string", "enum": ["Pendaftaran", "Terverifikasi", "Lulus Seleksi", "Tidak Lulus", "Daftar Ulang", "Diterima"] },
+        "biayaDaftarUlangLunas": { "type": "boolean" }
+      },
+      "required": ["id", "nama", "jk", "nisn", "status"]
+    },
+    "ArsipDokumen": {
+      "title": "ArsipDokumen",
+      "description": "Scanned document meta records belonging to a student.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "siswaId": { "type": "string" },
+        "namaDokumen": { "type": "string" },
+        "fileName": { "type": "string" },
+        "fileType": { "type": "string" },
+        "fileData": { "type": "string" },
+        "uploadedAt": { "type": "string", "format": "date" },
+        "keterangan": { "type": "string" }
+      },
+      "required": ["id", "siswaId", "namaDokumen", "fileName", "fileData"]
+    },
+    "SchoolSettings": {
+      "title": "SchoolSettings",
+      "description": "School identity and settings configurations.",
+      "type": "object",
+      "properties": {
+        "namaSekolah": { "type": "string" },
+        "npsn": { "type": "string" },
+        "alamat": { "type": "string" },
+        "visi": { "type": "string" },
+        "misi": { "type": "string" },
+        "logoUrl": { "type": "string" },
+        "kepalaSekolah": { "type": "string" },
+        "nipKepalaSekolah: ": { "type": "string" },
+        "operatorName": { "type": "string" },
+        "tahunPelajaran": { "type": "string" },
+        "semester": { "type": "string", "enum": ["Ganjil", "Genap"] },
+        "tandaTanganUrl": { "type": "string" }
+      },
+      "required": ["namaSekolah", "npsn", "kepalaSekolah", "tahunPelajaran", "semester"]
+    }
+  },
+  "firestore": {
+    "/settings/{docId}": {
+      "schema": "SchoolSettings",
+      "description": "School identity settings stored at document 'school_identity'."
+    },
+    "/siswa/{siswaId}": {
+      "schema": "Siswa",
+      "description": "Collection of all students in the junior high school database."
+    },
+    "/nilai/{siswaId}": {
+      "schema": "SiswaNilai",
+      "description": "Academic scores per student."
+    },
+    "/mutasi/{mutasiId}": {
+      "schema": "Mutasi",
+      "description": "History of student transfers (incoming and outgoing)."
+    },
+    "/bukuInduk/{siswaId}": {
+      "schema": "BukuIndukRecord",
+      "description": "Siswa comprehensive auxiliary record profiles."
+    },
+    "/spmb/{applicantId}": {
+      "schema": "SPMBRecord",
+      "description": "New student applicants records."
+    },
+    "/arsip/{arsipId}": {
+      "schema": "ArsipDokumen",
+      "description": "Metadata for uploaded scans and files per student."
+    }
+  }
+}

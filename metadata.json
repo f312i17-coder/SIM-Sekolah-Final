@@ -1,0 +1,6 @@
+{
+  "name": "SIM SEKOLAH SMP Negeri 1 Rangsang",
+  "description": "Sistem Informasi Manajemen Sekolah SMP Negeri 1 Rangsang - Aplikasi Tata Usaha modern dengan fitur lengkap seperti Manajemen Kesiswaan, Kepegawaian (Guru & Tendik), Buku Induk, Pengolah Nilai Ijazah, SPMB, Arsip Digital, Cetak Kartu Pelajar, Surat Menyurat, dan Laporan Statistik.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
