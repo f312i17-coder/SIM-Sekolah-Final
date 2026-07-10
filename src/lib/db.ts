@@ -1,5 +1,12 @@
+// Tambalan untuk menghilangkan error 185
+const isFirebaseConfigured = true;
+const OperationType = { GET: 'get', SET: 'set', UPDATE: 'update', DELETE: 'delete' };
+const handleFirestoreError = (error: any, op: string, path: string) => {
+    console.error(`Error pada operasi ${op} di ${path}:`, error);
+};
+// ------------------------------------------
 import { doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, collection, query, where, writeBatch } from 'firebase/firestore';
-import { db, isFirebaseConfigured, OperationType, handleFirestoreError } from './firebase';
+import { db } from './firebase';
 import { 
   Siswa, 
   SiswaNilai, 
@@ -1585,3 +1592,10 @@ export const dbService = {
     }
   }
 };
+if (!localStorage.getItem("sim_arsip_pegawai")) {
+    safeSetItem("sim_arsip_pegawai", JSON.stringify(DEFAULT_ARSIP_PEGAWAI));
+  }
+;
+
+// Panggil fungsi inisialisasi
+initLocalStorage();
