@@ -16,7 +16,8 @@ import {
   ArsipPegawai
 } from '../types';
 import { dbService } from './db';
-import { auth as firebaseAuth, isFirebaseConfigured } from './firebase';
+import { auth as firebaseAuth, firebaseUtils } from './firebase';
+const { isFirebaseConfigured } = firebaseUtils;
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut as fbSignOut, User } from 'firebase/auth';
 
 const safeSetItem = (key: string, value: string) => {
