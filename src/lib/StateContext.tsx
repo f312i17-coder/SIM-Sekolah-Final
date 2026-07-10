@@ -17,7 +17,7 @@ import {
 } from '../types';
 import { dbService } from './db';
 import { auth as firebaseAuth, isFirebaseConfigured } from './firebase';
-import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut as fbSignOut, User as FirebaseUser } from 'firebase/auth';
+import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut as fbSignOut, User } from 'firebase/auth';
 
 const safeSetItem = (key: string, value: string) => {
   try {
@@ -449,7 +449,7 @@ export const StateProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     // Auth Listener
     if (isFirebaseConfigured && firebaseAuth) {
-      const unsubscribe = onAuthStateChanged(firebaseAuth, async (fbUser: FirebaseUser | null) => {
+      const unsubscribe = onAuthStateChanged(firebaseAuth, async (fbUser: User | null) => {
         if (fbUser) {
           const profile: UserProfile = {
             uid: fbUser.uid,
