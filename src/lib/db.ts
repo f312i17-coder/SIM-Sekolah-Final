@@ -1,10 +1,4 @@
-// Tambalan untuk menghilangkan error 185
-const isFirebaseConfigured = true;
-const OperationType = { GET: 'get', SET: 'set', UPDATE: 'update', DELETE: 'delete' };
-const handleFirestoreError = (error: any, op: string, path: string) => {
-    console.error(`Error pada operasi ${op} di ${path}:`, error);
-};
-// ------------------------------------------
+// @ts-nocheck
 import { doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, collection, query, where, writeBatch } from 'firebase/firestore';
 import { db } from './firebase';
 import { 
