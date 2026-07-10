@@ -5,6 +5,8 @@ import { getFirestore } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+export const isFirebaseConfigured = true;
+
 const firebaseConfig = {
   apiKey: "AIzaSyBJpNP3fLxTkVaOh-Qg2wdxrzESQQl9A6I",
   authDomain: "sim-sekolah-3ceec.firebaseapp.com",
